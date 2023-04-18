@@ -1,0 +1,250 @@
+{
+  "version": "0.1.0",
+  "name": "staking",
+  "instructions": [
+    {
+      "name": "stake",
+      "accounts": [
+        {
+          "name": "stakingTokenOwner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ownerStakingTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "stakingPeriod",
+          "type": "u16"
+        },
+        {
+          "name": "isOneOfOne",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "collectFull",
+      "accounts": [
+        {
+          "name": "rewardMintAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "stakingTokenOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ownerStakingTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rewardMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ownerRewardTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "unstake",
+      "accounts": [
+        {
+          "name": "stakingTokenOwner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ownerStakingTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "eject",
+      "accounts": [
+        {
+          "name": "stakingTokenOwner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ownerStakingTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "StakeAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "stakingTokenOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "ownerStakingTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakingMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "created",
+            "type": "i64"
+          },
+          {
+            "name": "unstakeDate",
+            "type": "i64"
+          },
+          {
+            "name": "stakingPeriod",
+            "type": "u16"
+          },
+          {
+            "name": "isOneOfOne",
+            "type": "bool"
+          },
+          {
+            "name": "rewardCollected",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ErrorCode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "TooEarlyToUnstake"
+          },
+          {
+            "name": "RewardNotCollected"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "HeQTtHWw83MhXGQXgWdQdFKbwhRuNDyRcTo648WsXHnT"
+  }
+}
